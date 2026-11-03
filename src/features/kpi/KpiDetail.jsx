@@ -2,6 +2,7 @@ import { useApp } from '../../context/AppContext.jsx';
 import { ALERT_RULES, EXCEL_ROLES } from '../../kpi/registry.js';
 import { formatValue, isNotOperational, unitKey } from '../../kpi/catalogue.js';
 import { StatePill, StatusPill, Tag, reasonText, useLabels } from './kpiUi.jsx';
+import KpiTrendPanel from './KpiTrendPanel.jsx';
 
 const DISTRIBUTION_ORDER = ['green', 'orange', 'red', 'informational', 'not_evaluable'];
 
@@ -89,6 +90,8 @@ export default function KpiDetail({ row, scope, report, onClose }) {
         {result?.state ? <p className="kpr-note">{t(`kpr.stateHint.${result.state}`)}</p> : null}
         {result?.state === 'requires_validation' && value !== null ? <p className="kpr-note kpr-warn">{t('kpr.detail.methodWarning')}</p> : null}
       </div>
+
+      <KpiTrendPanel kpi={kpi} result={result} history={result?.history ?? []} />
 
       {!result ? <p className="kpr-banner">{t('kpr.detail.perProjectNone')} {t('kpr.scope.projectHint')}</p> : null}
 
