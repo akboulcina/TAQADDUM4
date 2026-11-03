@@ -1,0 +1,158 @@
+/* Interactive map workspace. Tokens come from styles/tokens.css (primary blue #2F80ED). */
+.apm { display: grid; gap: 16px; min-width: 0; color: var(--ink-900); }
+
+.apm-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.apm-header h2 { margin: 0 0 4px; font-size: 23px; font-weight: 750; letter-spacing: -0.015em; }
+.apm-header p { margin: 0; max-width: 720px; color: var(--ink-500); font-size: 13px; }
+.apm-badge { flex: 0 0 auto; padding: 6px 11px; border: 1px solid #dbe7fb; border-radius: 999px; background: var(--brand-050); color: var(--brand-600); font-size: 11.5px; font-weight: 700; }
+
+/* ── Filters ── */
+.apm-filters { display: grid; grid-template-columns: minmax(200px, 1.5fr) repeat(3, minmax(140px, 1fr)) auto; gap: 12px; align-items: end; padding: 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-sm); }
+.apm-field { display: grid; gap: 5px; min-width: 0; color: var(--ink-500); font-size: 11.5px; font-weight: 700; }
+.apm-field input, .apm-field select { width: 100%; height: 36px; padding: 0 10px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); color: var(--ink-900); font-size: 13px; font-weight: 500; }
+.apm-field input:focus, .apm-field select:focus { outline: none; border-color: var(--brand-500); box-shadow: var(--shadow-focus); }
+
+.apm-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 36px; padding: 0 13px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink-900); font-size: 12.5px; font-weight: 650; white-space: nowrap; }
+.apm-btn:hover:not(:disabled) { background: var(--surface-muted); }
+.apm-btn:disabled { color: var(--ink-400); cursor: not-allowed; }
+.apm-btn.is-primary { border-color: var(--brand-500); background: var(--brand-500); color: #fff; }
+.apm-btn.is-primary:hover:not(:disabled) { background: var(--brand-600); }
+.apm-btn.is-floating { height: 32px; box-shadow: 0 1px 4px rgba(16, 24, 40, 0.25); }
+.apm-btn:focus-visible, .apm-link:focus-visible, .apm-results button:focus-visible, .apm-sources summary:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; box-shadow: none; }
+.apm-link { border: 0; background: none; padding: 0; color: var(--brand-500); font-size: 12px; font-weight: 650; }
+.apm-link:hover { text-decoration: underline; }
+
+/* ── Workspace ── */
+.apm-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 16px; align-items: start; }
+.apm-stage-card { min-width: 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-sm); overflow: hidden; }
+.apm-stage-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.apm-basemaps { display: flex; align-items: center; gap: 4px; padding: 3px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface-muted); }
+.apm-basemaps-label { padding: 0 8px; color: var(--ink-500); font-size: 12px; font-weight: 700; }
+.apm-seg { position: relative; }
+.apm-seg input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.apm-seg span { display: block; padding: 5px 12px; border-radius: 6px; color: var(--ink-700); font-size: 12.5px; font-weight: 600; }
+.apm-seg input:checked + span { background: var(--brand-500); color: #fff; }
+.apm-seg input:not(:checked):hover + span { background: var(--surface); }
+.apm-seg input:focus-visible + span { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.apm-count { margin: 0; color: var(--ink-700); font-size: 12.5px; font-weight: 600; }
+.apm-count span { color: var(--ink-500); font-weight: 500; }
+.apm-alert { padding: 8px 14px; background: var(--warning-bg); color: var(--warning); border-bottom: 1px solid var(--border); font-size: 12.5px; font-weight: 600; }
+
+/* The map needs an explicit height: Leaflet draws nothing in a zero-height container. */
+.apm-stage { position: relative; height: clamp(500px, calc(100vh - 340px), 720px); background: #dfe7f0; }
+.apm-stage > .apm-leaflet { z-index: 0; }
+.apm-tools { position: absolute; inset-block-start: 10px; inset-inline-end: 10px; z-index: 500; display: flex; gap: 6px; }
+.apm-stage-message { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 8px; padding: 24px; text-align: center; color: var(--ink-700); font-size: 13px; }
+.apm-stage-message p { margin: 0; max-width: 360px; color: var(--ink-500); }
+.apm-spinner { width: 22px; height: 22px; border: 3px solid var(--brand-100); border-top-color: var(--brand-500); border-radius: 50%; animation: apm-spin 0.8s linear infinite; }
+@keyframes apm-spin { to { transform: rotate(360deg); } }
+.apm-stage-foot { display: grid; gap: 6px; padding: 10px 14px; border-top: 1px solid var(--border); }
+.apm-note { margin: 0; color: var(--ink-500); font-size: 11.5px; }
+.apm-note.is-warning { color: var(--warning); font-weight: 600; }
+.apm-sources { font-size: 11.5px; color: var(--ink-500); }
+.apm-sources summary { width: fit-content; color: var(--brand-600); font-weight: 650; cursor: pointer; }
+.apm-sources ul { margin: 8px 0 0; padding-inline-start: 18px; display: grid; gap: 6px; }
+
+/* ── Side panel ── */
+.apm-side { display: grid; gap: 12px; min-width: 0; }
+.apm-card { padding: 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-sm); }
+.apm-card h3 { margin: 0 0 10px; font-size: 13.5px; font-weight: 700; }
+.apm-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.apm-pill { margin-inline-start: 6px; padding: 1px 8px; border-radius: 999px; background: var(--brand-100); color: var(--brand-600); font-size: 11.5px; font-weight: 700; }
+.apm-muted { margin: 0; color: var(--ink-500); font-size: 12.5px; }
+.apm-wilaya-name { margin: 0 0 4px; font-size: 16px; font-weight: 700; }
+
+.apm-checks { display: grid; gap: 7px; }
+.apm-checks label, .apm-radios label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-900); }
+.apm-checks label.is-sub { margin-inline-start: 22px; color: var(--ink-700); }
+.apm-checks input, .apm-radios input { accent-color: var(--brand-500); margin: 0; width: 15px; height: 15px; }
+.apm-checks label:has(input:disabled), .apm-radios:disabled label { color: var(--ink-400); }
+.apm-radios { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin: 12px 0 0; padding: 12px 0 0; border: 0; border-top: 1px solid var(--border); }
+.apm-radios legend { padding: 0; margin-bottom: 6px; color: var(--ink-500); font-size: 11.5px; font-weight: 700; float: left; width: 100%; }
+.apm-legend { display: grid; gap: 6px; margin: 12px 0 0; padding: 12px 0 0; list-style: none; border-top: 1px solid var(--border); font-size: 12.5px; color: var(--ink-700); }
+.apm-legend li { display: flex; align-items: center; gap: 8px; }
+.apm-legend i { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--border); }
+.apm-legend .is-approx { color: var(--ink-500); }
+
+.apm-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+/* Project facts (popup + side panel) */
+.apm-info { display: grid; gap: 8px; }
+.apm-info-code { margin: 0; color: var(--ink-500); font-size: 11.5px; font-weight: 650; }
+.apm-info-name { margin: 0; font-size: 14.5px; line-height: 1.3; font-weight: 700; }
+.apm-info-missing { color: var(--ink-500); font-size: 12px; }
+.apm-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin: 2px 0 0; }
+.apm-info-grid > div { min-width: 0; }
+.apm-info-grid .is-wide { grid-column: 1 / -1; }
+.apm-info-grid dt { margin: 0 0 1px; color: var(--ink-500); font-size: 11px; font-weight: 650; }
+.apm-info-grid dd { margin: 0; font-size: 12.5px; font-weight: 600; overflow-wrap: anywhere; }
+.apm-info-progress { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; }
+.apm-info-precision { margin: 2px 0 0; padding: 7px 9px; border-radius: 7px; background: var(--surface-muted); color: var(--ink-700); font-size: 11.5px; line-height: 1.4; }
+.apm-info-precision.is-wilayaCapital, .apm-info-precision.is-namedSite { background: var(--warning-bg); color: #6b3d00; }
+.apm-info-precision.is-none { background: var(--danger-bg); color: var(--danger); }
+
+/* Results list */
+.apm-results { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; max-height: 320px; overflow-y: auto; }
+.apm-results button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 9px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: inherit; text-align: start; }
+.apm-results button:hover { background: var(--surface-muted); }
+.apm-results button.is-active { border-color: #bcd6fa; background: var(--brand-050); }
+.apm-dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
+.apm-result-text { display: grid; min-width: 0; flex: 1; }
+.apm-result-text strong { font-size: 12.5px; font-weight: 650; line-height: 1.3; }
+.apm-result-text small { color: var(--ink-500); font-size: 11px; }
+.apm-result-text .apm-result-issue { color: var(--danger); }
+.apm-results .status { flex: 0 0 auto; }
+
+/* ── Leaflet integration ── */
+/* Leaflet positions panes with physical offsets: keep the map itself left-to-right, even in Arabic.
+   Text inside popups and tooltips re-applies the page direction through dir="…". */
+.apm .leaflet-container { direction: ltr; font-family: var(--font); font-size: 12px; background: #dfe7f0; }
+.apm .leaflet-container:focus-visible { outline: 2px solid var(--brand-500); outline-offset: -2px; box-shadow: none; }
+.apm .leaflet-bar { border: 0; box-shadow: 0 1px 4px rgba(16, 24, 40, 0.3); }
+.apm .leaflet-bar a { color: var(--ink-700); }
+.apm .leaflet-control-attribution { max-width: min(560px, 92%); font-size: 10.5px; line-height: 1.35; }
+.apm .leaflet-control-attribution a { color: var(--brand-600); }
+
+.apm-pin { background: none; border: 0; }
+.apm-pin svg { display: block; filter: drop-shadow(0 1px 2px rgba(16, 24, 40, 0.45)); transition: transform 0.12s ease; transform-origin: 50% 90%; }
+.apm-pin:hover svg { transform: scale(1.08); }
+.apm-pin.is-selected svg { filter: drop-shadow(0 0 0 #fff) drop-shadow(0 2px 5px rgba(16, 24, 40, 0.6)); }
+.apm .leaflet-marker-icon:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; border-radius: 8px; box-shadow: none; }
+
+.apm-cluster { background: none; border: 0; }
+.apm-cluster-bubble { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: var(--brand-500); border: 3px solid #fff; box-shadow: 0 0 0 5px rgba(47, 128, 237, 0.3), 0 2px 6px rgba(16, 24, 40, 0.4); color: #fff; }
+.apm-cluster-bubble b { font-size: 14px; font-weight: 750; }
+
+.apm-popup .leaflet-popup-content-wrapper { padding: 0; border-radius: 10px; box-shadow: 0 8px 24px rgba(16, 24, 40, 0.28); }
+.apm-popup .leaflet-popup-content { margin: 14px 16px 14px; font-size: 13px; line-height: 1.4; color: var(--ink-900); text-align: start; }
+.apm-popup .leaflet-popup-content p { margin: 0; }
+.apm-popup .leaflet-popup-content .apm-info-precision { margin: 2px 0 0; }
+.apm-popup .apm-actions .apm-btn { flex: 1 1 auto; }
+.apm-popup .leaflet-popup-close-button { inset-block-start: 6px; inset-inline-end: 6px; }
+.apm-tooltip { padding: 4px 9px; border: 0; border-radius: 6px; background: var(--ink-900); color: #fff; font-size: 12px; font-weight: 600; box-shadow: 0 2px 8px rgba(16, 24, 40, 0.3); }
+.apm-tooltip.leaflet-tooltip-top::before { border-top-color: var(--ink-900); }
+
+/* ── Responsive ── */
+@media (max-width: 1280px) {
+  .apm-workspace { grid-template-columns: minmax(0, 1fr) 300px; }
+  .apm-filters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .apm-field.is-search { grid-column: 1 / -1; }
+}
+@media (max-width: 980px) {
+  .apm-workspace { grid-template-columns: minmax(0, 1fr); }
+  .apm-side { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .apm-side .apm-card:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .apm-header { flex-direction: column; gap: 10px; }
+  .apm-filters { grid-template-columns: 1fr 1fr; }
+  .apm-filters .apm-btn { grid-column: 1 / -1; }
+  .apm-stage { height: clamp(380px, 62vh, 560px); }
+  .apm-side { grid-template-columns: minmax(0, 1fr); }
+  .apm-basemaps-label { display: none; }
+  .apm-tools { flex-direction: column; align-items: flex-end; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .apm-spinner { animation-duration: 2.4s; }
+  .apm-pin svg { transition: none; }
+}

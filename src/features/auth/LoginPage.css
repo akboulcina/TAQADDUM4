@@ -1,0 +1,128 @@
+/*
+ * Login page — demo only. Scoped under .login-page so it cannot leak into the shell.
+ * Note: main.jsx loads this file before shell.css/base.css, so rules that override
+ * those files (focus ring, .button.primary) use higher specificity on purpose.
+ * Logical properties (inline-start/end) are used throughout so Arabic RTL mirrors.
+ */
+.login-page {
+  --login-navy: #0e2a4d;
+  --login-navy-line: rgba(255, 255, 255, 0.14);
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(380px, 5fr) minmax(0, 6fr);
+  background: var(--canvas);
+  color: var(--ink-900);
+}
+
+/* Stronger, always-visible keyboard focus than the global 18% ring. */
+.login-page :focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; box-shadow: none; }
+.login-page .login-brand :focus-visible { outline-color: #fff; }
+
+/* ---------- Brand panel ---------- */
+.login-brand {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 40px 48px 28px;
+  background: var(--login-navy);
+  color: #fff;
+  overflow: hidden;
+}
+.login-lockup { display: flex; align-items: center; gap: 12px; }
+.login-lockup .brand-mark { width: 40px; height: 40px; border-radius: 10px; font-size: 17px; }
+.login-lockup-name { font-size: 20px; font-weight: 750; letter-spacing: 0.02em; line-height: 1.15; }
+.login-lockup-tagline { font-size: 12px; color: rgba(255, 255, 255, 0.74); }
+.login-pitch { margin-top: 24px; max-width: 30em; }
+.login-headline { margin: 0; font-size: 36px; line-height: 1.22; font-weight: 700; letter-spacing: -0.012em; }
+.login-description { margin: 16px 0 0; font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.8); }
+.login-map { flex: 1 1 0; min-height: 0; width: 100%; }
+.login-map-shape { fill: rgba(255, 255, 255, 0.045); stroke: none; }
+.login-map-outline { fill: none; stroke: rgba(255, 255, 255, 0.5); stroke-width: 2.4; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: login-draw 1.8s 0.2s ease-out forwards; }
+.login-map-dot { fill: var(--brand-500); stroke: #fff; stroke-width: 2; opacity: 0; animation: login-dot 0.45s ease-out forwards; animation-delay: calc(1.1s + var(--i) * 0.11s); }
+.login-brand-note { margin: 0; padding-top: 14px; border-top: 1px solid var(--login-navy-line); font-size: 12px; color: rgba(255, 255, 255, 0.72); }
+
+@keyframes login-draw { to { stroke-dashoffset: 0; } }
+@keyframes login-dot { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .login-map-outline { animation: none; stroke-dashoffset: 0; }
+  .login-map-dot { animation: none; opacity: 1; }
+}
+
+/* ---------- Form side ---------- */
+.login-main { min-width: 0; display: flex; flex-direction: column; padding: 16px 32px 24px; }
+.login-toolbar { display: flex; justify-content: flex-end; }
+.login-center { flex: 1; display: grid; place-items: center; padding: 8px 0; }
+.login-card { width: 100%; max-width: 540px; padding: 28px 32px; }
+.login-title { margin: 0; font-size: 26px; font-weight: 750; letter-spacing: -0.015em; }
+.login-subtitle { margin: 6px 0 0; color: var(--ink-500); font-size: 13.5px; }
+.login-form { margin-top: 20px; display: flex; flex-direction: column; gap: 16px; }
+
+.login-page .lang-switch { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.login-page .lang-switch button { height: 32px; padding: 0 12px; border: 0; border-radius: 6px; background: transparent; color: var(--ink-700); font-size: 13px; font-weight: 600; }
+.login-page .lang-switch button:hover { background: var(--surface-muted); }
+.login-page .lang-switch button.is-active { background: var(--brand-600); color: #fff; }
+
+.login-page .field { display: flex; flex-direction: column; gap: 6px; }
+.login-page .field label,
+.login-page .field-label { font-size: 13px; font-weight: 650; color: var(--ink-700); }
+.login-page .field input[type="text"],
+.login-page .field input[type="password"] {
+  width: 100%; height: 42px; padding: 0 12px; border: 1px solid #c9d3de; border-radius: 8px;
+  background: var(--surface); color: var(--ink-900); font-size: 14px;
+}
+.login-page .field input::placeholder { color: var(--ink-400); }
+.login-page .field input[type="text"]:focus,
+.login-page .field input[type="password"]:focus { border-color: var(--brand-500); }
+.login-page .field input[aria-invalid="true"] { border-color: var(--danger); background: #fffafa; }
+.login-page .field-hint { margin: 0; font-size: 12.5px; line-height: 1.45; color: var(--ink-500); }
+.login-page .field-error { margin: 0; display: flex; align-items: flex-start; gap: 6px; font-size: 12.5px; font-weight: 600; line-height: 1.4; color: var(--danger); }
+.login-page .field-error svg { flex: 0 0 auto; margin-top: 2px; }
+
+/* Persona picker: native radios (arrow-key navigation for free), styled as cards. */
+.persona-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.persona-grid[aria-invalid="true"] .persona-box { border-color: #e7a8a2; }
+.persona-option { position: relative; display: block; cursor: pointer; }
+.persona-input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.persona-box { display: flex; align-items: center; gap: 10px; min-height: 54px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); transition: border-color 0.12s, background-color 0.12s; }
+.persona-option:hover .persona-box { border-color: #b9cbe4; background: var(--surface-muted); }
+.persona-input:checked + .persona-box { border-color: var(--brand-500); background: var(--brand-050); box-shadow: inset 0 0 0 1px var(--brand-500); }
+.login-page .persona-input:focus-visible + .persona-box { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+.persona-avatar { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 12px; font-weight: 750; }
+.persona-text { min-width: 0; flex: 1; display: flex; flex-direction: column; line-height: 1.25; }
+.persona-role { font-size: 13px; font-weight: 650; color: var(--ink-900); overflow-wrap: anywhere; }
+.persona-name { font-size: 12px; color: var(--ink-500); overflow-wrap: anywhere; }
+.persona-check { flex: 0 0 auto; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid #9aa8b8; color: transparent; }
+.persona-input:checked + .persona-box .persona-check { border-color: var(--brand-500); background: var(--brand-500); color: #fff; }
+.persona-hint { min-height: 2.6em; }
+
+.password-wrap { position: relative; }
+.login-page .password-wrap input { padding-inline-end: 46px; }
+.login-page .password-toggle { position: absolute; top: 4px; inset-inline-end: 4px; width: 34px; height: 34px; display: grid; place-items: center; border: 0; border-radius: 6px; background: transparent; color: var(--ink-500); }
+.login-page .password-toggle:hover { background: var(--surface-muted); color: var(--ink-900); }
+
+/* Beats .button.primary in shell.css (loaded later); brand-600 keeps white text at AA contrast. */
+.login-page .button.login-submit { width: 100%; justify-content: center; height: 46px; margin-top: 4px; border-color: var(--brand-600); background: var(--brand-600); color: #fff; font-size: 15px; font-weight: 650; }
+.login-page .button.login-submit:hover { background: #185cad; border-color: #185cad; }
+
+/* ---------- Tablet / mobile: brand panel becomes a compact header ---------- */
+@media (max-width: 960px) {
+  .login-page { grid-template-columns: minmax(0, 1fr); }
+  .login-brand { position: static; height: auto; gap: 16px; padding: 22px 24px 24px; }
+  .login-pitch { margin-top: 4px; max-width: 40em; }
+  .login-headline { font-size: 21px; }
+  .login-description { margin-top: 8px; font-size: 14px; }
+  .login-map, .login-brand-note { display: none; }
+  .login-main { padding: 16px 20px 28px; }
+  .login-center { place-items: start center; }
+}
+@media (max-width: 480px) {
+  .login-brand { padding: 18px 16px 20px; }
+  .login-main { padding: 12px 12px 24px; }
+  .login-card { padding: 22px 16px; }
+  .login-title { font-size: 23px; }
+  .persona-grid { grid-template-columns: minmax(0, 1fr); }
+  .persona-hint { min-height: 0; }
+}
