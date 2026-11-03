@@ -5,7 +5,9 @@ import { getRecipientSummary, RECIPIENT_MAPPING_GAPS } from '../../alerts/recipi
 import { ACTIVE_ALERT_STATUSES } from '../../alerts/lifecycle.js';
 import { alertCategoryLabel } from '../../alerts/categories.js';
 import { getDecisions } from '../../roles/roleReference.js';
+import AlertIntelligencePanels from './AlertIntelligencePanels.jsx';
 import './AlertsModule.css';
+import './AlertIntelligence.css';
 
 const RULE_BY_ID = Object.fromEntries(ALERT_RULES.map((rule) => [rule.id, rule]));
 const STATUS_LABELS = {
@@ -17,14 +19,6 @@ const severityLabel = (severity) => severity === 'ROUGE' ? 'Rouge' : 'Orange';
 const severityRank = (severity) => severity === 'ROUGE' ? 2 : 1;
 const fmt = (value) => value === null || value === undefined ? 'Absent' : typeof value === 'object' ? JSON.stringify(value) : String(value);
 
-/*
- * Alert centre. Visibility is decided by the role model (src/roles/access.js), never here:
- *   1. `projects` are the persona's SCOPED projects — an alert on any other project is dropped first;
- *   2. the persona must be a D/I recipient of the rule in the workbook (access.canViewRuleAlert);
- *   3. the role's alert view narrows further.
- * `evaluations` are produced upstream (useRoleScope) from the same scoped projects.
- * KPI values the persona may not see (blank in 03_Matrice_Roles) are masked in the evidence.
- */
 export function AlertsModule({
   projects = [], user, actionState = {}, onAction, canAct = () => true,
   alertRecords = {}, notifications = [], evaluations = [], onMarkNotificationRead,
@@ -72,7 +66,6 @@ export function AlertsModule({
     setResolutionDraft(selected?.resolutionNote ?? '');
   }, [selected?.id]);
 
-  // Only rules the persona is a D/I recipient of: coverage of other rules is not shown (blank = not visible).
   const myEvaluations = useMemo(() => evaluations.filter((item) => access.alertRecipientCode(item.ruleId)), [evaluations, access]);
   const myRules = useMemo(() => ALERT_RULES.filter((rule) => access.alertRecipientCode(rule.id)), [access]);
   const myGaps = RECIPIENT_MAPPING_GAPS.filter((gap) => access.alertRecipientCode(gap.ruleId));
@@ -145,6 +138,8 @@ export function AlertsModule({
         <article><strong>{triggeredCount}</strong><span>Conditions déclenchées</span></article>
         <article><strong>{unevaluable.length}</strong><span>Évaluations non concluantes</span></article><article><strong>{dueSoonCount}</strong><span>Échéances sous 7 jours</span></article>
       </div>
+
+      <AlertIntelligencePanels alerts={allInstances} projects={projects} evaluations={myEvaluations} />
 
       <div className="alerts-toolbar">
         <input type="search" placeholder="Rechercher une règle, un projet…" value={search} onChange={(event) => setSearch(event.target.value)} />
