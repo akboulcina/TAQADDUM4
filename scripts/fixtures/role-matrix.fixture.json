@@ -1,0 +1,735 @@
+{
+ "source": "TAQADDUM_43_KPI_Referentiel_1.xlsx / 03_Matrice_Roles",
+ "roleKeys": [
+  "direction",
+  "pmo",
+  "mo",
+  "bet",
+  "contractor",
+  "budgetController"
+ ],
+ "kpis": {
+  "AV1": {
+   "name": "Avancement physique consolidé",
+   "rights": {
+    "direction": null,
+    "pmo": "S",
+    "mo": "R",
+    "bet": "V",
+    "contractor": "V",
+    "budgetController": "V"
+   },
+   "scopeNote": null
+  },
+  "AV2": {
+   "name": "Indice d'avancement",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": "V",
+    "bet": "V",
+    "contractor": "V",
+    "budgetController": "V"
+   },
+   "scopeNote": null
+  },
+  "AV3": {
+   "name": "Cadence récente",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": "S",
+    "contractor": "V",
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "AV4": {
+   "name": "Part non contractualisée",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "AV5": {
+   "name": "Mise en service fonctionnelle",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": "S",
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "FI1": {
+   "name": "Écart physique–financier",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": null,
+    "contractor": "V",
+    "budgetController": "S"
+   },
+   "scopeNote": null
+  },
+  "FI2": {
+   "name": "Couverture du reste à faire",
+   "rights": {
+    "direction": "V",
+    "pmo": "V",
+    "mo": "R",
+    "bet": null,
+    "contractor": null,
+    "budgetController": "S"
+   },
+   "scopeNote": null
+  },
+  "FI3": {
+   "name": "Couverture des crédits de paiement",
+   "rights": {
+    "direction": "V",
+    "pmo": "V",
+    "mo": "V",
+    "bet": null,
+    "contractor": null,
+    "budgetController": "R"
+   },
+   "scopeNote": null
+  },
+  "FI4": {
+   "name": "Dérive d'AE ajustée",
+   "rights": {
+    "direction": "V",
+    "pmo": "V",
+    "mo": "V",
+    "bet": null,
+    "contractor": null,
+    "budgetController": "R"
+   },
+   "scopeNote": null
+  },
+  "FI5": {
+   "name": "Réévaluations d'AE en attente",
+   "rights": {
+    "direction": "V",
+    "pmo": "S",
+    "mo": "V",
+    "bet": null,
+    "contractor": null,
+    "budgetController": "R"
+   },
+   "scopeNote": null
+  },
+  "FI6": {
+   "name": "Retard de paiement des situations",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": null,
+    "contractor": "V",
+    "budgetController": "S"
+   },
+   "scopeNote": "Contractant : ses propres situations."
+  },
+  "FI7": {
+   "name": "Encours de situations",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "V",
+    "bet": null,
+    "contractor": "V",
+    "budgetController": "R"
+   },
+   "scopeNote": "Contractant : ses propres situations."
+  },
+  "DL1": {
+   "name": "Consommation du délai en vigueur",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": "V",
+    "contractor": "V",
+    "budgetController": "V"
+   },
+   "scopeNote": null
+  },
+  "DL2": {
+   "name": "Dérive de délai par avenants",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": "V",
+    "bet": "V",
+    "contractor": "V",
+    "budgetController": "V"
+   },
+   "scopeNote": null
+  },
+  "DL3": {
+   "name": "Dépassement de la date contractuelle",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": "V",
+    "bet": "V",
+    "contractor": "V",
+    "budgetController": "V"
+   },
+   "scopeNote": null
+  },
+  "DL4": {
+   "name": "Date d'achèvement prévisionnelle",
+   "rights": {
+    "direction": "V",
+    "pmo": "V",
+    "mo": "R",
+    "bet": "S",
+    "contractor": "V",
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "BU1": {
+   "name": "Poids financier des avenants",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": "S",
+    "bet": null,
+    "contractor": "V",
+    "budgetController": "V"
+   },
+   "scopeNote": null
+  },
+  "BU2": {
+   "name": "Nombre d'avenants cumulés",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": "V",
+    "contractor": "V",
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "BU3": {
+   "name": "Coût final prévisionnel",
+   "rights": {
+    "direction": "V",
+    "pmo": "V",
+    "mo": "R",
+    "bet": "S",
+    "contractor": null,
+    "budgetController": "V"
+   },
+   "scopeNote": null
+  },
+  "QR1": {
+   "name": "Taux de libération des emprises",
+   "rights": {
+    "direction": "V",
+    "pmo": "V",
+    "mo": "R",
+    "bet": "V",
+    "contractor": "V",
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "QR2": {
+   "name": "Interférences réseaux traitées",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": "V",
+    "contractor": "V",
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "QR3": {
+   "name": "Âge des blocages ouverts",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": "V",
+    "bet": "V",
+    "contractor": "V",
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "QR4": {
+   "name": "Temps perdu à l'arrêt",
+   "rights": {
+    "direction": "V",
+    "pmo": "V",
+    "mo": "R",
+    "bet": "V",
+    "contractor": "V",
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "QR5": {
+   "name": "Aléas non prévus ouverts",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": "S",
+    "contractor": "V",
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "QR6": {
+   "name": "Modification de consistance en cours",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "S",
+    "bet": "R",
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "QR7": {
+   "name": "Non-conformité critique la plus ancienne",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "V",
+    "bet": "R",
+    "contractor": "V",
+    "budgetController": null
+   },
+   "scopeNote": "Contractant : les NC qui le concernent."
+  },
+  "QR8": {
+   "name": "Incidents HSE graves",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "V",
+    "bet": "R",
+    "contractor": "V",
+    "budgetController": null
+   },
+   "scopeNote": "Contractant : incidents de ses chantiers."
+  },
+  "DO1": {
+   "name": "Fraîcheur des données",
+   "rights": {
+    "direction": null,
+    "pmo": "R",
+    "mo": "V",
+    "bet": "V",
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "DO2": {
+   "name": "Complétude",
+   "rights": {
+    "direction": null,
+    "pmo": "R",
+    "mo": "V",
+    "bet": "V",
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "DO3": {
+   "name": "Cohérence",
+   "rights": {
+    "direction": null,
+    "pmo": "R",
+    "mo": "V",
+    "bet": "V",
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "PP1": {
+   "name": "Fiabilité du planning hebdomadaire",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": "V",
+    "contractor": "S",
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "PP2": {
+   "name": "Mobilisation effective",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": "V",
+    "contractor": "S",
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "PP3": {
+   "name": "Causes de non-réalisation externes",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": "V",
+    "contractor": "S",
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "CO1": {
+   "name": "Santé du contractant (0–100)",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": "V",
+    "bet": null,
+    "contractor": "V",
+    "budgetController": null
+   },
+   "scopeNote": "Contractant : son propre score uniquement."
+  },
+  "CO2": {
+   "name": "Concentration par contractant",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": null,
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "CO3": {
+   "name": "Part en parachèvement après résiliation",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": null,
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "CO4": {
+   "name": "Projets en retard important",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": "V",
+    "bet": null,
+    "contractor": null,
+    "budgetController": "V"
+   },
+   "scopeNote": null
+  },
+  "CO5": {
+   "name": "Projets à l'arrêt",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": "V",
+    "bet": null,
+    "contractor": null,
+    "budgetController": "V"
+   },
+   "scopeNote": null
+  },
+  "CO6": {
+   "name": "Score de santé du portefeuille",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": null,
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "GV1": {
+   "name": "Blocages avec responsable et échéance",
+   "rights": {
+    "direction": null,
+    "pmo": "R",
+    "mo": "V",
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "GV2": {
+   "name": "Avenants en attente de visa (CSM)",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": "S",
+    "bet": null,
+    "contractor": "V",
+    "budgetController": "V"
+   },
+   "scopeNote": null
+  },
+  "GV3": {
+   "name": "Arbitrages échus",
+   "rights": {
+    "direction": "V",
+    "pmo": "R",
+    "mo": "V",
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  },
+  "GV4": {
+   "name": "Réceptions en attente",
+   "rights": {
+    "direction": null,
+    "pmo": "V",
+    "mo": "R",
+    "bet": "V",
+    "contractor": null,
+    "budgetController": null
+   },
+   "scopeNote": null
+  }
+ },
+ "alerts": {
+  "AL01": {
+   "name": "Avant-coureur d'abandon",
+   "level": "ROUGE",
+   "codes": {
+    "direction": "I",
+    "pmo": "D",
+    "mo": "D",
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   }
+  },
+  "AL02": {
+   "name": "Emprise bloquée critique",
+   "level": "ROUGE",
+   "codes": {
+    "direction": "I",
+    "pmo": "D",
+    "mo": "D",
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   }
+  },
+  "AL03": {
+   "name": "Étranglement financier",
+   "level": "ROUGE",
+   "codes": {
+    "direction": "I",
+    "pmo": "D",
+    "mo": "I",
+    "bet": null,
+    "contractor": null,
+    "budgetController": "D"
+   }
+  },
+  "AL04": {
+   "name": "Dégradation contractant",
+   "level": "ORANGE",
+   "codes": {
+    "direction": null,
+    "pmo": "I",
+    "mo": "D",
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   }
+  },
+  "AL05": {
+   "name": "Déblocage critique qui approche",
+   "level": "ORANGE",
+   "codes": {
+    "direction": null,
+    "pmo": "I",
+    "mo": "D",
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   }
+  },
+  "AL06": {
+   "name": "Dérive de délai",
+   "level": "ROUGE",
+   "codes": {
+    "direction": "I",
+    "pmo": "D",
+    "mo": "D",
+    "bet": null,
+    "contractor": "I",
+    "budgetController": null
+   }
+  },
+  "AL07": {
+   "name": "Sous-performance physique",
+   "level": "ORANGE",
+   "codes": {
+    "direction": null,
+    "pmo": "I",
+    "mo": "D",
+    "bet": null,
+    "contractor": "D",
+    "budgetController": null
+   }
+  },
+  "AL08": {
+   "name": "Dérive d'AE",
+   "level": "ROUGE",
+   "codes": {
+    "direction": "I",
+    "pmo": "I",
+    "mo": "D",
+    "bet": null,
+    "contractor": null,
+    "budgetController": "D"
+   }
+  },
+  "AL09": {
+   "name": "NC critique persistante",
+   "level": "ROUGE",
+   "codes": {
+    "direction": null,
+    "pmo": "I",
+    "mo": "D",
+    "bet": "D",
+    "contractor": "I",
+    "budgetController": null
+   }
+  },
+  "AL10": {
+   "name": "Responsable de blocage absent",
+   "level": "ORANGE",
+   "codes": {
+    "direction": null,
+    "pmo": "D",
+    "mo": "I",
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   }
+  },
+  "AL11": {
+   "name": "Paiement anormalement lent",
+   "level": "ROUGE",
+   "codes": {
+    "direction": null,
+    "pmo": "I",
+    "mo": "D",
+    "bet": null,
+    "contractor": "I",
+    "budgetController": "D"
+   }
+  },
+  "AL12": {
+   "name": "Maturation critique",
+   "level": "ORANGE",
+   "codes": {
+    "direction": null,
+    "pmo": "I",
+    "mo": "D",
+    "bet": "D",
+    "contractor": null,
+    "budgetController": null
+   }
+  },
+  "AL13": {
+   "name": "Dérive de délai extrême",
+   "level": "ORANGE",
+   "codes": {
+    "direction": "I",
+    "pmo": "D",
+    "mo": "I",
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   }
+  },
+  "AL14": {
+   "name": "Avenant bloqué au visa",
+   "level": "ORANGE",
+   "codes": {
+    "direction": null,
+    "pmo": "D",
+    "mo": "D",
+    "bet": null,
+    "contractor": "I",
+    "budgetController": null
+   }
+  },
+  "AL15": {
+   "name": "Arrêt prolongé",
+   "level": "ROUGE",
+   "codes": {
+    "direction": "I",
+    "pmo": "D",
+    "mo": "D",
+    "bet": null,
+    "contractor": "I",
+    "budgetController": null
+   }
+  },
+  "AL16": {
+   "name": "Données peu fiables",
+   "level": "ORANGE",
+   "codes": {
+    "direction": null,
+    "pmo": "D",
+    "mo": "I",
+    "bet": "I",
+    "contractor": null,
+    "budgetController": null
+   }
+  },
+  "AL17": {
+   "name": "Blocage ancien",
+   "level": "ORANGE",
+   "codes": {
+    "direction": "I",
+    "pmo": "D",
+    "mo": null,
+    "bet": null,
+    "contractor": null,
+    "budgetController": null
+   }
+  }
+ }
+}

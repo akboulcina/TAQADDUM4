@@ -1,0 +1,28 @@
+{
+  "name": "taqaddum",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:roles": "node scripts/verify-roles.mjs",
+    "test:map": "node scripts/verify-map.mjs",
+    "test:kpi": "node scripts/verify-kpi.mjs",
+    "test:alerts": "node scripts/verify-alerts.mjs",
+    "test:matrix": "node scripts/verify-role-matrix.mjs"
+  },
+  "dependencies": {
+    "@react-leaflet/core": "^2.1.0",
+    "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}
