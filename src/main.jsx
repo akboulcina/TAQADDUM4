@@ -4,6 +4,7 @@ import App from './App.jsx';
 import { AppProvider } from './context/AppContext.jsx';
 import './styles/tokens.css';
 import './styles/base.css';
+import './styles/components.css';
 import './styles/shell.css';
 import './styles/premium.css';
 
