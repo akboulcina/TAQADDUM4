@@ -1,5 +1,39 @@
-.alert-intelligence{margin:1rem 0;padding:1rem;border:1px solid var(--border,#d0d7de);border-radius:.5rem;background:#fff}
-.alert-intel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-.alert-intel-grid article{border:1px solid var(--border,#d0d7de);border-radius:.5rem;padding:.75rem}
-.alert-intel-grid h4{margin:0 0 .5rem}
-@media(max-width:720px){.alert-intel-grid{grid-template-columns:1fr}}
+/* Alert intelligence — TAQADDUM v3 hybride visual alignment.
+   Presentation only: intelligence rules, evaluations, and actions are unchanged. */
+
+.alert-intelligence {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, .97);
+  box-shadow: var(--shadow-sm);
+}
+
+.alert-intel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.alert-intel-grid article {
+  padding: .75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+}
+
+.alert-intel-grid h4 {
+  margin: 0 0 .5rem;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .alert-intel-grid {
+    grid-template-columns: 1fr;
+  }
+}
